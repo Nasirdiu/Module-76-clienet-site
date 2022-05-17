@@ -9,7 +9,6 @@ import Loading from "../../Share/Loading/Loading";
 const RequireAdmin = ({ children }) => {
   const [user, loading, error] = useAuthState(auth);
   const [admin,adminLoading]=useAdmin(user);
-  console.log(admin);
   const location = useLocation();
   if(loading || adminLoading){
    return   <Loading></Loading>

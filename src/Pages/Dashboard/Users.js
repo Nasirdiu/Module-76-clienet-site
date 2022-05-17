@@ -4,12 +4,16 @@ import Loading from "../Share/Loading/Loading";
 import UsersRaw from "./UsersRaw";
 
 const Users = () => {
-  const { data: users, isLoading,refetch } = useQuery("users", () =>
-    fetch(`http://localhost:5000/user`,{
-        method:'GET',
-        headers:{
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        }
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery("users", () =>
+    fetch(`http://localhost:5000/user`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
     }).then((res) => res.json())
   );
   if (isLoading) {
@@ -18,8 +22,8 @@ const Users = () => {
   return (
     <div>
       <h2 className="text-2xl">All Users:{users.length}</h2>
-      <div class="overflow-x-auto">
-        <table class="table w-full">
+      <div className="overflow-x-auto">
+        <table className="table w-full">
           <thead>
             <tr>
               <th></th>
@@ -29,9 +33,9 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-            {
-                users.map(user=><UsersRaw key={user._id} user={user} refetch={refetch}></UsersRaw>)
-            }
+            {users.map((user) => (
+              <UsersRaw key={user._id} user={user} refetch={refetch}></UsersRaw>
+            ))}
           </tbody>
         </table>
       </div>

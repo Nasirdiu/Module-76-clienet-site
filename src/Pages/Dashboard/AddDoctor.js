@@ -12,7 +12,9 @@ const AddDoctor = () => {
     reset,
   } = useForm();
   const { data: services, isLoading } = useQuery("services", () =>
-    fetch(`http://localhost:5000/service`).then((res) => res.json())
+    fetch(`https://warm-springs-07917.herokuapp.com/service`).then((res) =>
+      res.json()
+    )
   );
   const imageStorageKey = "ff4a3bca6feff6db86f309b98922d201";
   /**
@@ -43,7 +45,7 @@ const AddDoctor = () => {
             img: img,
           };
           //send to your database:
-          fetch("http://localhost:5000/doctor", {
+          fetch("https://warm-springs-07917.herokuapp.com/doctor", {
             method: "POST",
             headers: {
               "content-type": "application/json",

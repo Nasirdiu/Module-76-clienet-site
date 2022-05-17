@@ -9,16 +9,20 @@ const AvilableAppointment = ({ date }) => {
   // const [services, setServices] = useState([]);
   const [treatment, setTreatment] = useState(null);
   const formateDate = format(date, "PP");
-  const { data: services, isLoading,refetch } = useQuery(["available",formateDate], () =>
-    fetch(`http://localhost:5000/available?date=${formateDate}`).then((res) =>
-      res.json()
-    )
+  const {
+    data: services,
+    isLoading,
+    refetch,
+  } = useQuery(["available", formateDate], () =>
+    fetch(
+      `https://warm-springs-07917.herokuapp.com/available?date=${formateDate}`
+    ).then((res) => res.json())
   );
   if (isLoading) {
     return <Loading></Loading>;
   }
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/available?date=${formateDate}`)
+  //   fetch(`https://warm-springs-07917.herokuapp.com/available?date=${formateDate}`)
   //     .then((res) => res.json())
   //     .then((data) => setServices(data));
   // }, [formateDate]);

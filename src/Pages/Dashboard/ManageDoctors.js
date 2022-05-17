@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Loading from "../Share/Loading/Loading";
+import DeleteConfirmModal from "./DeleteConfirmModal";
 import DoctorRow from "./DoctorRow";
 
 const ManageDoctors = () => {
@@ -10,7 +11,7 @@ const ManageDoctors = () => {
     isLoading,
     refetch,
   } = useQuery("doctors", () =>
-    fetch("http://localhost:5000/doctor", {
+    fetch("https://warm-springs-07917.herokuapp.com/doctor", {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
@@ -49,11 +50,13 @@ const ManageDoctors = () => {
           </tbody>
         </table>
       </div>
-      {/* {deletingDoctor && <DeleteConfirmModal
-                deletingDoctor={deletingDoctor}
-                refetch={refetch}
-                setDeletingDoctor={setDeletingDoctor}
-            ></DeleteConfirmModal>} */}
+      {deletingDoctor && (
+        <DeleteConfirmModal
+          deletingDoctor={deletingDoctor}
+          refetch={refetch}
+          setDeletingDoctor={setDeletingDoctor}
+        ></DeleteConfirmModal>
+      )}
     </div>
   );
 };
